@@ -19,6 +19,24 @@ router.use('/orders', orderRoutes);
 router.use('/analytics', analyticsRoutes);
 router.use('/users', userRoutes); // Add this
 
+// Add this before the existing routes
+router.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Restaurant API is running',
+    endpoints: {
+      health: '/api/health',
+      menu: '/api/menu-items',
+      tables: '/api/tables',
+      orders: '/api/orders',
+      auth: '/api/auth',
+      analytics: '/api/analytics',
+      categories: '/api/categories',
+      users: '/api/users',
+    },
+    docs: 'https://github.com/SameerShaikhDev/restorant_backend',
+  });
+});
 // Health check
 router.get('/health', (req, res) => {
   res.status(200).json({
